@@ -35,6 +35,12 @@ export default {
       parents: [],
     };
   },
+  created() {
+    if (this.id) {
+      this.fetch();
+    }
+    this.fetchParents();
+  },
   methods: {
     async save() {
       let res;
@@ -58,12 +64,6 @@ export default {
       const res = await this.$axios.get(`rest/categories`);
       this.parents = res.data;
     },
-  },
-  created() {
-    if (this.id) {
-      this.fetch();
-    }
-    this.fetchParents();
   },
 };
 </script>

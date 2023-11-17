@@ -3,11 +3,28 @@
     <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
       <el-menu router :default-openeds="['1', '3']">
         <el-submenu index="1">
-          <div slot="title"><i class="el-icon-message"></i>内容管理</div>
+          <div slot="title" style="padding-left: 1rem">
+            <i class="el-icon-message"></i>内容管理
+          </div>
           <el-menu-item-group>
             <div slot="title">分类</div>
             <el-menu-item index="/categories/create">新建分类</el-menu-item>
             <el-menu-item index="/categories/list">分类列表</el-menu-item>
+          </el-menu-item-group>
+          <el-menu-item-group>
+            <div slot="title">物品</div>
+            <el-menu-item index="/items/create">新建物品</el-menu-item>
+            <el-menu-item index="/items/list">物品列表</el-menu-item>
+          </el-menu-item-group>
+          <el-menu-item-group>
+            <div slot="title">英雄</div>
+            <el-menu-item index="/heroes/create">新建英雄</el-menu-item>
+            <el-menu-item index="/heroes/list">英雄列表</el-menu-item>
+          </el-menu-item-group>
+          <el-menu-item-group>
+            <div slot="title">文章</div>
+            <el-menu-item index="/articles/create">新建文章</el-menu-item>
+            <el-menu-item index="/articles/list">文章列表</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
       </el-menu>
@@ -27,13 +44,6 @@
 
       <el-main>
         <router-view> </router-view>
-        <!-- <el-table :data="tableData">
-          <el-table-column prop="date" label="Date" width="140">
-          </el-table-column>
-          <el-table-column prop="name" label="Name" width="120">
-          </el-table-column>
-          <el-table-column prop="address" label="Address"> </el-table-column>
-        </el-table> -->
       </el-main>
     </el-container>
   </el-container>
@@ -48,6 +58,9 @@
 
 .el-aside {
   color: #333;
+}
+.el-menu-item-group {
+  padding-left: 1rem;
 }
 </style>
 
