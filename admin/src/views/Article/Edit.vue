@@ -16,6 +16,13 @@
       <el-form-item label="标题">
         <el-input v-model="model.title"></el-input>
       </el-form-item>
+      <el-form-item label="详情" class="article_body">
+        <QuillEditor
+          v-model:content="model.body"
+          toolbar="full"
+          contentType="html"
+        />
+      </el-form-item>
       <el-form-item>
         <el-button type="primary" native-type="submit"> 保存</el-button>
       </el-form-item>
@@ -24,11 +31,41 @@
 </template>
 
 <script>
+import ImageUploader from "quill-image-uploader";
+import { ref } from "vue";
 export default {
   props: {
     id: {},
   },
-  setup() {},
+  setup() {
+    // const modules = ref({
+    //   name: "imageUploader",
+    //   module: ImageUploader,
+    //   options: {
+    //     upload: (file) => {
+    //       return new Promise((resolve, reject) => {
+    //         const formData = new FormData();
+    //         formData.append("file", file);
+    //         this.$axios
+    //           .post("upload", formData)
+    //           .then((res) => {
+    //             console.log(res);
+    //             resolve(res.data.url);
+    //           })
+    //           .catch((err) => {
+    //             reject("Upload failed");
+    //             console.error("Error:", err);
+    //           });
+    //       });
+    //     },
+    //     theme: "snow",
+    //     contentType: "html",
+    //   },
+    // });
+    // return {
+    //   modules,
+    // };
+  },
   data() {
     return {
       model: {},
@@ -75,7 +112,7 @@ export default {
 }
 </style>
 
-<style>
+<style lang="scss">
 .avatar-uploader .el-upload {
   border: 1px dashed var(--el-border-color);
   border-radius: 6px;
@@ -95,5 +132,11 @@ export default {
   width: 178px;
   height: 178px;
   text-align: center;
+}
+.article_body {
+  .el-form-item__content {
+    display: block;
+    margin-bottom: 8rem;
+  }
 }
 </style>

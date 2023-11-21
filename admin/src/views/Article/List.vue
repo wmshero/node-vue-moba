@@ -41,14 +41,18 @@ export default {
         confirmButtonText: "OK",
         cancelButtonText: "Cancel",
         type: "warning",
-      }).then(async () => {
-        await this.$axios.delete(`rest/articles/${row._id}`);
-        this.$message({
-          type: "success",
-          message: "Delete completed",
+      })
+        .then(async () => {
+          await this.$axios.delete(`rest/articles/${row._id}`);
+          this.$message({
+            type: "success",
+            message: "Delete completed",
+          });
+          this.fetch();
+        })
+        .catch((err) => {
+          console.log(err);
         });
-        this.fetch();
-      });
     },
   },
 };
