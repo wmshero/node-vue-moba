@@ -52,4 +52,33 @@ module.exports = (app) => {
     file.url = `https://localhost:3000/uploads/${file.filename}`;
     res.send(file);
   });
+  app.post("/admin/api/login", async (req, res) => {
+    const { username, password } = req.body;
+    const AdminUser = require("../../models/AdminUser");
+    //根据用户名找用户
+    const user = await AdminUser.findOne({ username }).select("+password");
+    if (!user) {
+      return res.status(422).send({
+        message: "this user isn't exist!",
+      });
+    }
+    //校验密码
+    const isValid = require("bcrypt").compareSync(password, user.password);
+    if (!isValid) {
+      return res.status(422).send({
+        message: "password isn't correct!",
+      });
+    }
+    // 返回token
+    const jwt = require("jsonwebtoken");
+    const token = jwt.sign(
+      {
+        id: user._id,
+      },
+      app.get("secret")
+    );
+    res.send({
+      token,
+    });
+  });
 };

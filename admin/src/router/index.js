@@ -10,8 +10,16 @@ import ArticleEdit from "../views/Article/Edit.vue";
 import ArticleList from "../views/Article/List.vue";
 import AdEdit from "../views/Ad/Edit.vue";
 import AdList from "../views/Ad/List.vue";
+import AdminUserEdit from "../views/AdminUser/Edit.vue";
+import AdminUserList from "../views/AdminUser/List.vue";
+import Login from "../views/Login.vue";
 
 const routes = [
+  {
+    path: "/login",
+    name: "login",
+    component: Login,
+  },
   {
     path: "/",
     name: "main",
@@ -81,6 +89,19 @@ const routes = [
       {
         path: "/ads/list",
         component: AdList,
+      },
+      {
+        path: "/admin_users/create",
+        component: AdminUserEdit,
+      },
+      {
+        path: "/admin_users/edit/:id",
+        component: AdminUserEdit,
+        props: true,
+      },
+      {
+        path: "/admin_users/list",
+        component: AdminUserList,
       },
     ],
   },
