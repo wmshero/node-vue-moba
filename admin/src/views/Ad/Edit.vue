@@ -24,6 +24,7 @@
                 class="avatar-uploader"
                 :action="$axios.defaults.baseURL + '/upload'"
                 :show-file-list="false"
+                :header="getAuthHeaders()"
                 :on-success="(res) => (item.image = res.url)"
                 :before-upload="beforeAvatarUpload"
               >
@@ -52,11 +53,14 @@
 </template>
 
 <script>
+import getAuthHeaders from "../../plugins/getAuthHeaders";
 export default {
   props: {
     id: {},
   },
-  setup() {},
+  setup() {
+    return { getAuthHeaders };
+  },
   data() {
     return {
       model: {

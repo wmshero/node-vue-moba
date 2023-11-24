@@ -26,12 +26,14 @@ export default {
   methods: {
     async login() {
       const { data } = await this.$axios.post("login", this.model);
-      localStorage.token = data.token;
-      this.$router.push("/");
-      this.$message({
-        type: "success",
-        message: "login successful",
-      });
+      if (data) {
+        localStorage.token = data.token;
+        this.$router.push("/");
+        this.$message({
+          type: "success",
+          message: "login successful",
+        });
+      }
     },
   },
 };

@@ -10,6 +10,7 @@
           <el-form-item label="头像">
             <el-upload
               class="avatar-uploader"
+              :header="getAuthHeaders()"
               :action="$axios.defaults.baseURL + '/upload'"
               :show-file-list="false"
               :on-success="handleAvatarSuccess"
@@ -99,6 +100,7 @@
               <el-form-item label="图标">
                 <el-upload
                   class="avatar-uploader"
+                  :header="getAuthHeaders()"
                   :action="$axios.defaults.baseURL + '/upload'"
                   :show-file-list="false"
                   :on-success="(res) => (item.icon = res.url)"
@@ -140,11 +142,17 @@
 </template>
 
 <script>
+import getAuthHeaders from "../../plugins/getAuthHeaders";
+
 export default {
   props: {
     id: {},
   },
-  setup() {},
+  setup() {
+    return {
+      getAuthHeaders,
+    };
+  },
   data() {
     return {
       items: [],
